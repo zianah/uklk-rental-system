@@ -1,0 +1,107 @@
+<% if current_user && current_user.admin? %>
+<div class="container-fluid" style="margin-top: 15vh">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-8 col-md-8">
+      <div class="alert alert-success">
+        Hi
+        <strong>
+          Owner
+        </strong>
+        !
+        Currently You have
+        <strong><%= @bookings.count %></strong>
+        Booking Requests.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top: 5vh">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-8 col-lg-8">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>House ID</th>
+            <th>Booking Date</th>
+            <th>Client</th>
+            <th>Booking Status</th>
+            <th colspan="3">Actions</th>
+          </thead>
+          <tbody>
+            <% @bookings.each do |booking| %>
+              <tr>
+                <td><%= link_to booking.rental.id, booking.rental %></td>
+                <td><%= booking.created_at.strftime("%B, %d, %Y")%></td>
+                <td><%= booking.user.email %></td>
+                <td><%= booking.status %></td>
+              
+                <td><%= link_to 'Show', booking %></td>
+                <td><%= link_to 'Cancel Booking', booking, method: :delete, data: { confirm: 'Are you sure to cancel the booking?' } %></td>
+                <td><%= link_to 'Take Action', edit_booking_path(booking) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="container-fluid" style="margin-top: 15vh">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-8 col-md-8">
+      <div class="alert alert-success">
+        Hi
+        <strong>
+          <%= current_user.email %>
+        </strong>
+        !
+        Currently You have
+        <strong><%= current_user.bookings.count %></strong>
+        Booking.
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if !current_user.bookings.blank? %>
+  <div class="container-fluid" style="margin-top: 5vh">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-8 col-lg-8">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>House ID</th>
+            <th>Booking Date</th>
+            <th>Booking Status</th>
+            <th colspan="3">Actions</th>
+          </thead>
+          <tbody>
+            <% current_user.bookings.each do |booking| %>
+              <tr>
+                <td><%= link_to booking.rental.id, booking.rental %></td>
+                <td><%= booking.created_at.strftime("%B, %d, %Y")%></td>
+                <td><%= booking.status %></td>
+              
+                <td><%= link_to 'Show', booking %></td>
+                <td><%= link_to 'Cancel Booking', booking, method: :delete, data: { confirm: 'Are you sure to cancel the booking?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-8">
+      <%= link_to 'New Booking', new_booking_path, :class=>"btn btn-success btn-md" %>
+      <%= link_to "Back", root_path, :class=>"btn btn-dark btn-md"%>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="container-fluid" style="margin-top: 15vh">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-8">
+      <div class="card">
+        <div class="card-body">
+            <div class="text-center"><%= image_tag(@booking.rental.image_url, :class=>"img-fluid", :size=>"280x360")%></div>
+            <p class="mt-5">Booked House Number #<%= @booking.rental.id %></p>
+            <p>Booked Date: <%= @booking.created_at.strftime("%B, %d, %Y")%></p>
+            <p>Status: <%= @booking.status%></p>
+            <hr>
+            <p class="lead"><%= @booking.message %></p>
+            <%= link_to "Back", bookings_path, :class=>"btn btn-primary btn-md ml-0"%>
+            <% if current_user && current_user.admin? %>
+              <%= link_to "Take Action", edit_booking_path, :class=>"btn btn-success btn-md"%>
+            <% end %>
+            <%= link_to "Cancel Booking", booking_path, method: :delete, data:{confirm: 'Are you sure?'}, :class=>"btn btn-danger btn-md"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

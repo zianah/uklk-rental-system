@@ -1,0 +1,19 @@
+<%= simple_form_for(@booking) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :rental, label_method: :id, prompt: 'Select house by ID', label: false %>
+    <%= f.input :message,input_html:{rows: 5}, label: false, placeholder: 'Message (Optional)' %>
+    
+    <% if current_user && current_user.admin? %>
+      <%= f.input :status, collection:['Approved', 'Rejected'], prompt: 'Take your action', label: false %>
+    <% end %>
+    <%= f.association :user, as: :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Submit", :class=>"btn btn-primary btn-md ml-0" %>
+    <%= link_to "Back", bookings_path, :class=>"btn btn-dark btn-md"%>
+  </div>
+<% end %>

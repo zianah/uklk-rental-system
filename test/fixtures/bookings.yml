@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  status: MyString
+  rental: one
+  user: one
+
+two:
+  message: MyText
+  status: MyString
+  rental: two
+  user: two
