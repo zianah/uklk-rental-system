@@ -1,0 +1,53 @@
+<div id="review-<%= review.id %>">
+  <div class="text-left">
+    <% if review.user.name %>
+      <strong>
+      <%= review.user.name %>
+      </strong>
+    <% else %>
+    <strong>
+      <%= review.user.email %>
+      </strong>
+    <% end %>
+    <% if user_signed_in? %>
+      <% if current_user && current_user == review.user || current_user.admin? %>
+        <%= link_to "Delete", rental_review_path(@rental, review), method: :delete, remote: true,:class=>"btn btn-sm btn-danger"%>
+      <% end %>
+    <% end %>
+    <br>
+    <span class="time"><%= time_ago_in_words(review.created_at) %> ago | 
+    <% if review.score == 1 %>
+      <i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+    <% elsif review.score == 2 %>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+    <% elsif review.score == 3 %>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+      <i class="far fa-star"></i>
+    <% elsif review.score == 4 %>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+    <% elsif review.score == 5 %>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    <% end %>
+    </span>
+    <p class="text-justify"><%= review.message %></p>
+  </div>
+</div>

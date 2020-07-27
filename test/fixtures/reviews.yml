@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  score: 1
+  user: one
+  rental: one
+
+two:
+  message: MyText
+  score: 1
+  user: two
+  rental: two

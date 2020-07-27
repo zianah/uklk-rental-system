@@ -1,0 +1,64 @@
+<% provide(:rentals_active, 'active') %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center" style="margin-top: 10vh">
+    <div class="col-sm-12 d-flex">
+    <div class="float-left">
+    <% if current_user && current_user.admin? %>
+      <%= link_to 'Add New', new_rental_path(@rental),:class=>"btn btn-secondary btn-sm" %>
+    <% end %>
+    </div>
+      <div class="float-right" style="margin-top: -30px">
+        <form class="form-inline md-form mb-2">
+          <div class="form-group">
+            <i class="fas fa-search ml-3" aria-hidden="true"></i>
+          </div>
+          <div class="form-group">
+            <%= form_tag rentals_path, method: :get do %>
+              <%= text_field_tag :search, params[:search], :class=>'form-control ml-3', placeholder:'Location' %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+    <% @rentals.each do |rental| %>
+    <div class="col-sm-12 col-md-3 col-lg-3">
+      <div class="card mb-2">
+        <%= image_tag(rental.image_url, :class=>"card-img-top", :size=>"125x185")%>
+        <div class="card-body">
+          <h4 class="card-title">
+            <i class="fas fa-map-marker-alt"></i> <%= rental.location %>
+            | Block <%= rental.block %>
+          </h4>
+          <p class="card-text"><i class="fas fa-clock mr-2"></i> Posted <%= time_ago_in_words(rental.created_at)%> ago
+            <i class="fas fa-star ml-2"></i>
+              <% if rental.avg_score %>
+                <%= rental.avg_score %> / 5.0
+              <% else %>
+                0 / 5.0
+              <% end %>
+          </p>
+          <p class="card-text text-justify"><%= truncate(rental.other_facilities, length: 100)%></p>
+          <%= link_to "View", rental, :class=>"btn btn-primary btn-sm ml-0"%>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    
+  </div>
+</div>
+
+<!-- Bootstrap4 Pagination + Will_Paginate + Bootstrap-will_paginate Gem -->
+<nav aria-label="Page navigation example" style="margin-top: 10px">
+  <ul class="pagination pg-blue justify-content-center">
+            <%= will_paginate(@rentals,
+            :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+            inner_window: 1,
+            outer_window: 0,
+            class: 'text-center') %>
+  </ul>
+</nav>
+<!-- / Pagination -->

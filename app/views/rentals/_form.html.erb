@@ -1,0 +1,100 @@
+<%= simple_form_for(@rental) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-group row pt-4">
+      <div class="col-sm-4">
+        <%= f.input :location, label: 'LOCATION', collection: ['Taman Bahtera'], prompt:'Select Apartment Location' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :apartment_name, label: 'NAME', placeholder: 'Enter Apartment Name' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :block, label: 'BLOCK', collection: ['N/A',1,2,3,4,5,6,7,8,9,10], prompt:'Select Apartment Block' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <%= f.input :level, label: 'LEVEL', collection: ['N/A','UG','G',1,2,3,4,5,6,7,8,9,10], prompt:'Select Apartment Level' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :house_number, label: 'HOUSE NUMBER', placeholder: 'Enter House Number' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :room_number, label: 'NUMBER OF ROOMS', collection: [1,2,3,4,5,6], prompt:'Select Number Of Total Rooms' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <%= f.input :aircon, label: 'AIRCON', collection: ['Yes', 'No'], prompt:'Select Aircon Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :kitchen, label: 'KITCHEN', collection: ['Yes', 'No'], prompt:'Select Kitchen Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :toilet, label: 'NUMBER OF TOILETS', collection: [1,2,3,4], prompt:'Select Number Of Total Toilets' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <%= f.input :balcony, label: 'BALCONY', collection: ['Yes', 'No'], prompt:'Select Balcony Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :washing_machine, label: 'WASHING MACHINE', collection: ['Yes', 'No'], prompt:'Select Washing M/C Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :refrigerator, label: 'REFRIGERATOR', collection: ['Yes', 'No'], prompt:'Select Refrigerator Availability' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <%= f.input :oven, label: 'OVEN', collection: ['Yes', 'No'], prompt:'Select Oven Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :electric_shower, label: 'ELECTRIC SHOWER', collection: ['Yes', 'No'], prompt:'Select Electric Shower Availability' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :furniture_condition, label: 'FURNITURE', collection: ['No', 'Yes, good condition', 'Yes, morderate good condition','Yes, not so good condition'], prompt:'Select Furniture Condition And Availability' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <%= f.input :lift_facility, label: 'LIFT FACILITY', collection: ['Yes', 'No', 'Have, but in service'], prompt:'Select LIFT Availability' %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= f.input :image_url, label: 'Image URL', placeholder: 'Image URL' %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= f.input :available_seats, label: 'SEATS AVAILABLE FOR (n person)', collection:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], prompt: 'Select Seats(Vacancy) Available' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <%= f.input :payment, label: 'COST / ADVANCE PAYMENT (MYR)',placeholder: 'Describe Cost / Advance Payment',input_html:{rows: 4} %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      
+      <div class="col-sm-12">
+        <%= f.input :other_facilities, label: 'OTHER FACILITIES (OPTIONAL)', placeholder: 'Other Facilities ... ',input_html:{rows: 6} %>
+      </div>
+    </div>
+
+    <div class="form-inputs">
+      <%= f.association :user, as: :hidden %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Submit",:class=>"btn btn-primary btn-sm ml-0" %>
+      <%= link_to 'Back', rentals_path,:class=>"btn btn-secondary btn-sm" %>
+    </div>
+<% end %>

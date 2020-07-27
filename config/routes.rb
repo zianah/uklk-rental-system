@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :rentals do
+    resources :reviews
+  end
+  
   devise_for :users
-  root 'pages#home'
+  root 'rentals#index'
 
   devise_scope :user do
     get '/users', to: 'devise/registrations#new'

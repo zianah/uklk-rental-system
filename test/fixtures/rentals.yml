@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: MyString
+  apartment_name: MyString
+  block: MyString
+  level: MyString
+  house_number: MyString
+  aircon: MyString
+  room_number: MyString
+  kitchen: MyString
+  toilet: MyString
+  balcony: MyString
+  image_url: MyString
+  washing_maching: MyString
+  refrigerator: MyString
+  oven: MyString
+  electric_shower: MyString
+  furniture_condition: MyString
+  other_facilities: MyText
+  lift_facility: MyString
+  payment: MyText
+  available_seats: MyString
+  user: one
+
+two:
+  location: MyString
+  apartment_name: MyString
+  block: MyString
+  level: MyString
+  house_number: MyString
+  aircon: MyString
+  room_number: MyString
+  kitchen: MyString
+  toilet: MyString
+  balcony: MyString
+  image_url: MyString
+  washing_maching: MyString
+  refrigerator: MyString
+  oven: MyString
+  electric_shower: MyString
+  furniture_condition: MyString
+  other_facilities: MyText
+  lift_facility: MyString
+  payment: MyText
+  available_seats: MyString
+  user: two
