@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row justify-content-center" style="margin-top: 12vh">
+    <div class="col-sm-10 col-md-10 col-lg-10">
+      <div class="card" style="padding: 15px">
+        <div class="card-body">
+          <h2 class="text-center">Update Your Account</h2>
+          <hr>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.text_field :name,
+                                label: false,
+                                placeholder: 'Name',
+                                autofocus: true,
+                                class: 'form-control'
+                                %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.email_field :email,
+                                label: false,
+                                placeholder: 'Email',
+                                class: 'form-control'
+                                %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+              <div class="col-sm-6">
+                  <%= f.input :faculty,
+                                label: false,
+                                collection: [
+                                  'Faculty of Arts, Computing and Creative Industries (FSKIK)',
+                                  'Faculty of Science and Mathematics (FSMT)',
+                                  'Faculty of Management and Economics (FPE)',
+                                  'Faculty of Sports Science and Coaching (FSSK)',
+                                  'Faculty of Music and Performing Arts (FSMP)',
+                                  'Faculty of Languages and Communication (FBK)',
+                                  'Faculty of Social Sciences and Humanities (FSK)',
+                                  'Faculty of Technical and Vocational Education (FPTV)',
+                                  'Faculty of Human Development (FPM)'
+                                  ],
+                                prompt: 'Faculty',
+                                class: 'form-control'
+                                %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.input :course,
+                                label: false,
+                                collection: [
+                                  'Bachelor in Software Engineering',
+                                  'Bachelor in Information Technology',
+                                  'Bachelor in Multimedia',
+                                  'Masters in Renewable Energy',
+                                  'Bachelor of Business Administration',
+                                  'Masters of Business Administration',
+                                  'Other'
+                                  ],
+                                prompt: 'Course',
+                                autofocus: true,
+                                class: 'form-control'
+                                %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.input :matric_id,
+                                label: false,
+                                placeholder: 'Matric ID',
+                                autofocus: true,
+                                class: 'form-control'
+                                %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.input :semester,
+                                label: false,
+                                placeholder: 'Semester',
+                                collection:
+                                [
+                                  '1','2','3','4','5', '6', '7', '8', '9', '10', '11', '12'
+                                ],
+                                prompt:'Semester',
+                                class: 'form-control'
+                                %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.input :phone_number,
+                                label: false,
+                                placeholder: 'Phone',
+                                autofocus: true,
+                                class: 'form-control'
+                                %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.input :gender,
+                                label: false,
+                                collection:['Male', 'Female'],
+                                prompt: 'Gender',
+                                class: 'form-control'
+                                %>
+                </div>
+              </div>
+
+            <div class="form-inputs">
+
+              <%= f.input :password,
+                          label: false,
+                          placeholder: 'Password',
+                          hint: "leave it blank if you don't want to change it",
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :password_confirmation,
+                          label: false,
+                          placeholder: 'Re-Type Password',
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :current_password,
+                          label: false,
+                          placeholder: 'Current Password',
+                          hint: "we need your current password to confirm your changes",
+                          required: true,
+                          input_html: { autocomplete: "current-password" } %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Update", :class=>"btn btn-md btn-info ml-0" %>
+              <%= link_to "Back", root_path, :class=>"btn btn-md btn-success"%>
+              <%= link_to "Cancel Account", registration_path(resource_name), :class=>"btn btn-md btn-danger",  data: { confirm: "Are you sure?" }, method: :delete %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
