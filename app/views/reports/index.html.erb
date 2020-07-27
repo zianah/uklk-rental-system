@@ -1,0 +1,42 @@
+<% provide(:reports_active, 'active') %>
+
+<% if current_user && current_user.admin? %>
+  <div class="container-fluid">
+    <div class="row" style="margin-top: 10vh">
+      <% @reports.each do |report| %>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="float-right">
+                <%= link_to 'Delete', report, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-sm btn-danger" %>
+              </div>
+
+              <h4 class="card-title"><%= report.title %></h4>
+              <i class="far fa-clock"></i>
+              <small class="text-muted"><%= time_ago_in_words(report.created_at) %>
+              ago by
+              <% if report.user.name? %>
+                <%= report.user.name %>
+              <% else %>
+                <%= report.user.email %>
+              <% end %>
+              </small>
+              <p class="card-text"><%= report.message %></p>
+            </div>
+          </div>
+          <br>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+<div class="container-fluid" style="margin-top: 20vh">
+  <div class="row justify-content-center">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div class="text-center">
+        <%= link_to '+ New Report', new_report_path,:class=>"btn btn-md btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

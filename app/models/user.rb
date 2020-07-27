@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :rentals
   has_many :reviews
   has_many :contacts
+  has_many :reports
 end
