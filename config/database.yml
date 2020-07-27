@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['UKLK_DATABASE_USERNAME'] %>
+  password: <%= ENV['UKLK_DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: uklk_development
+  username: <%= ENV['UKLK_DATABASE_USERNAME'] %>
+  password: <%= ENV['UKLK_DATABASE_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: uklk_test
+
+production:
+  <<: *default
+  database: uklk_production
+  username: Toluene
+  password: <%= ENV['UKLK_DATABASE_PASSWORD'] %>
