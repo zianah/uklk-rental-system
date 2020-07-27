@@ -75,17 +75,17 @@
         <p class="lead text-justify"><%= @rental.other_facilities %></p>
         <%= link_to 'Back', rentals_path, :class=>"btn btn-sm btn-primary ml-0" %>
 
-        <%# if can? :update, @rental %>
+        <% if can? :update, @rental %>
           <%= link_to 'Edit', edit_rental_path(@rental),:class=>"btn btn-success btn-sm" %>
-        <%# end %>
+        <% end %>
 
-        <%# if can? :destroy, @rental %>
+        <% if can? :destroy, @rental %>
           <%= link_to 'Delete', rental_path,:class=>"btn btn-danger btn-sm", data: { toggle: 'modal',target:'#large-Modal' },:class=>"btn-sm btn btn-danger waves-effect" %>
-        <%# end %>
+        <% end %>
         
-        <%# if can? :create, @rental %>
+        <% if can? :create, @rental %>
           <%= link_to 'Add New', new_rental_path(@rental),:class=>"btn btn-secondary btn-sm" %>
-        <%# end %>
+        <% end %>
 
         <div class="modal fade" id="large-Modal" tabindex="-1" role="dialog">
               <div class="modal-dialog modal-lg" role="document">
