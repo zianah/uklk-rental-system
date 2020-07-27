@@ -3,7 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.association :rental, label_method: :id, prompt: 'Select house by ID', label: false %>
+    <%= f.association :rental, label_method: :id, prompt: 'Select by House ID', label: false %>
     <%= f.input :message,input_html:{rows: 5}, label: false, placeholder: 'Message' %>
     
     <% if current_user && current_user.admin? %>

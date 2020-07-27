@@ -31,6 +31,8 @@
             <i class="fas fa-map-marker-alt"></i> <%= rental.location %>
             | Block <%= rental.block %>
           </h4>
+          <br>
+          <small class="text-muted">House ID: #<%= rental.id %></small>
           <p class="card-text"><i class="fas fa-clock mr-2"></i> Posted <%= time_ago_in_words(rental.created_at)%> ago
             <i class="fas fa-star ml-2"></i>
               <% if rental.avg_score %>
